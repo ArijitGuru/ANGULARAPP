@@ -2,6 +2,8 @@ import { DatatypeComponent } from './sandbox/datatypes.component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'; 
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +29,9 @@ import {DataService} from './sandbox/services/data.services'
 import { ServiceTestingComponent } from './sandbox/servicetesting/dataservice.component';
 import { ObservableExampleService } from './sandbox/services/observableexample.services';
 import { ObservableExampleComponent } from './sandbox/observableexample/observableExample.component';
+import { HttpGetExampleComponent } from './sandbox/http/httpget.component';
+import { HttpGetService } from './sandbox/services/httpget.services';
+
 
 @NgModule({
   declarations: [
@@ -48,15 +53,17 @@ import { ObservableExampleComponent } from './sandbox/observableexample/observab
     NgModelFormSubmitExampleComponent,
     TemplateDrivenFormComponent,
     ServiceTestingComponent,
-    ObservableExampleComponent
+    ObservableExampleComponent,
+    HttpGetExampleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule //Do not import HttpClient as it wont work since Angular 6
     
   ],
-  providers: [DataService, ObservableExampleService],
+  providers: [DataService, ObservableExampleService, HttpGetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
