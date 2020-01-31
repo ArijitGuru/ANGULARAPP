@@ -6,7 +6,7 @@ import { Component } from "@angular/core";
     template:`
         <h1> Http Post example</h1>
 
-        <form (submit)="onSubmit()">
+        <form (submit)="onSubmit(isEdit)">
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" class="form-control" [(ngModel)]="user.name" name="name">
@@ -38,6 +38,7 @@ import { Component } from "@angular/core";
                 <br/>
             </ul>
 
+            <button class="btn btn-primary btn-sm" (click)="onEditClick(user)">Edit</button>
             <button class="btn btn-danger btn-sm" (click)="onDeleteClick(user.id)">Delete</button>
             <br/>
             <br/>
@@ -55,20 +56,38 @@ export class HttppostComponent{
     user = {
         name:'',
         email:'',
-        phone:''
+        phone:'',
+        id: ''
 
     }
+
+    isEdit: boolean = false;
 
     constructor(public httpPostService: HttpPostService ){
 
         console.log("Hello HttppostComponent");
     }
 
-    onSubmit(){
-        this.httpPostService.addUser(this.user).subscribe(user => {
-            console.log(user);
-            this.users.unshift(user);
-        });
+    onSubmit(isEdit){
+
+        if (isEdit){
+            this.httpPostService.updateUser(this.user).subscribe(user => {
+                for (let i = 0; i < this.users.length; i++){
+                    if(this.users[i].id == this.user.id){    
+                        console.log(this.user);   
+                        this.users.splice(i, 1);
+                    }
+                }
+                this.users.unshift(this.user);
+            });
+        }else{
+            this.httpPostService.addUser(this.user).subscribe(user => {
+                console.log(user);
+                this.users.unshift(user);
+            });
+        }
+
+        
     }
 
     onDeleteClick(id){
@@ -81,5 +100,12 @@ export class HttppostComponent{
             }
         });
     }
+
+    onEditClick(user){
+        this.isEdit = true;
+        this.user = user;
+    }
+
+
 
 }

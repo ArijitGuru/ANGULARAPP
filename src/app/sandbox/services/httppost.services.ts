@@ -20,5 +20,9 @@ export class HttpPostService{
         console.log("Id is " + id);
         return this.httpClient.delete('https://jsonplaceholder.typicode.com/users/'+ id).pipe(map(res => res));
     }
+
+    updateUser(user): Observable<any>{
+        return this.httpClient.put('https://jsonplaceholder.typicode.com/users/'+ user.id, user).pipe(map(res => res));
+    }
     
 }
