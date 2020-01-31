@@ -4,7 +4,7 @@ import { HttpGetService } from '../services/httpget.services';
 @Component({
     selector:'httpgetexample',
     template:`
-    <h1>Hello World</h1>
+    <h1>Http Get Example</h1>
 
     <div *ngFor="let user of users">
         <div class="well">

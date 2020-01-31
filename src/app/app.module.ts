@@ -31,6 +31,8 @@ import { ObservableExampleService } from './sandbox/services/observableexample.s
 import { ObservableExampleComponent } from './sandbox/observableexample/observableExample.component';
 import { HttpGetExampleComponent } from './sandbox/http/httpget.component';
 import { HttpGetService } from './sandbox/services/httpget.services';
+import { HttpPostService } from './sandbox/services/httppost.services';
+import { HttppostComponent } from './sandbox/http/httppost.component';
 
 
 @NgModule({
@@ -54,7 +56,8 @@ import { HttpGetService } from './sandbox/services/httpget.services';
     TemplateDrivenFormComponent,
     ServiceTestingComponent,
     ObservableExampleComponent,
-    HttpGetExampleComponent
+    HttpGetExampleComponent,
+    HttppostComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,7 @@ import { HttpGetService } from './sandbox/services/httpget.services';
     HttpClientModule //Do not import HttpClient as it wont work since Angular 6
     
   ],
-  providers: [DataService, ObservableExampleService, HttpGetService],
+  providers: [DataService, ObservableExampleService, HttpGetService, HttpPostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
