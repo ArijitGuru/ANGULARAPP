@@ -38,6 +38,9 @@ import { Component } from "@angular/core";
                 <br/>
             </ul>
 
+            <button class="btn btn-danger btn-sm" (click)="onDeleteClick(user.id)">Delete</button>
+            <br/>
+            <br/>
         </div>
     </div>
 
@@ -65,6 +68,17 @@ export class HttppostComponent{
         this.httpPostService.addUser(this.user).subscribe(user => {
             console.log(user);
             this.users.unshift(user);
+        });
+    }
+
+    onDeleteClick(id){
+        this.httpPostService.deleteUser(id).subscribe(res => {
+            console.log(id);
+            for (let i = 0; i < this.users.length; i++){
+                if(this.users[i].id == id){
+                    this.users.splice(i, 1);
+                }
+            }
         });
     }
 
