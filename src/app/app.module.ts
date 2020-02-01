@@ -33,7 +33,20 @@ import { HttpGetExampleComponent } from './sandbox/http/httpget.component';
 import { HttpGetService } from './sandbox/services/httpget.services';
 import { HttpPostService } from './sandbox/services/httppost.services';
 import { HttppostComponent } from './sandbox/http/httppost.component';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
+
+import {RouterModule, Routes} from '@angular/router';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+
+const appRoutes: Routes = [
+  {path:'', component:HomeComponent},
+  {path:'about', component:AboutComponent},
+  {path:'user/:id', component:UserDetailsComponent}
+
+];
 
 @NgModule({
   declarations: [
@@ -57,13 +70,18 @@ import { HttppostComponent } from './sandbox/http/httppost.component';
     ServiceTestingComponent,
     ObservableExampleComponent,
     HttpGetExampleComponent,
-    HttppostComponent
+    HttppostComponent,
+    HomeComponent,
+    AboutComponent,
+    NavbarComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule //Do not import HttpClient as it wont work since Angular 6
+    HttpClientModule, //Do not import HttpClient as it wont work since Angular 6
+    RouterModule.forRoot(appRoutes)
     
   ],
   providers: [DataService, ObservableExampleService, HttpGetService, HttpPostService],
