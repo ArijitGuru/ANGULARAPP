@@ -19,7 +19,7 @@ export class UserDetailsComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
+  ngOnInit() {3
   }
 
 }
